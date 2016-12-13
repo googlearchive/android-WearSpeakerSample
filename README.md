@@ -11,8 +11,8 @@ on your watch (using "adb").
 Pre-requisites
 --------------
 
-- Android SDK v24
-- Android Build Tools v24.0.1
+- Android SDK v25
+- Android Build Tools v25.0.2
 - Android Support Repository
 
 Getting Started
