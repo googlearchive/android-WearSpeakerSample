@@ -18,17 +18,17 @@
 
 
     <RelativeLayout
-        android:id="@+id/container2"
+        android:id="@+id/outer_circle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background_color">
 
         <View
-            android:id="@+id/circle"
+            android:id="@+id/inner_circle"
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:layout_centerInParent="true"
-            android:background="@drawable/circle" />
+            android:background="@drawable/color_circle" />
 
         <View
             android:id="@+id/center"
@@ -67,13 +67,13 @@
             android:src="@drawable/ic_audiotrack_32dp" />
 
         <ProgressBar
-            android:id="@+id/progress"
+            android:id="@+id/progress_bar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/circle"
-            android:layout_alignEnd="@+id/circle"
-            android:layout_below="@+id/circle"
+            android:layout_alignStart="@+id/inner_circle"
+            android:layout_alignEnd="@+id/inner_circle"
+            android:layout_below="@+id/inner_circle"
             android:progressTint="@color/progressbar_tint"
             android:progressBackgroundTint="@color/progressbar_background_tint"
             android:layout_marginTop="5dp"
