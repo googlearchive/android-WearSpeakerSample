@@ -38,11 +38,11 @@ android {
 
 dependencies {
 
-    compile 'com.android.support:wear:27.0.2'
+    compile 'com.android.support:wear:27.1.0'
 
     compile 'com.google.android.gms:play-services-wearable:11.8.0'
-    compile 'com.android.support:appcompat-v7:27.0.2'
+    compile 'com.android.support:appcompat-v7:27.1.0'
 
-    provided 'com.google.android.wearable:wearable:2.2.0'
-    compile 'com.google.android.support:wearable:2.2.0'
+    provided 'com.google.android.wearable:wearable:2.3.0'
+    compile 'com.google.android.support:wearable:2.3.0'
 }
