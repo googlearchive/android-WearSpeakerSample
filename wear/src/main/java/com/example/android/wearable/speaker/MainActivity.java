@@ -17,7 +17,6 @@
 package com.example.android.wearable.speaker;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -28,8 +27,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
-import android.support.wear.ambient.AmbientMode;
+import android.support.wear.ambient.AmbientModeSupport;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -45,8 +45,8 @@ import java.util.concurrent.TimeUnit;
  * to 10 seconds), a Play icon (if clicked, it wil playback the recorded audio file) and a music
  * note icon (if clicked, it plays an MP3 file that is included in the app).
  */
-public class MainActivity extends Activity implements
-        AmbientMode.AmbientCallbackProvider,
+public class MainActivity extends FragmentActivity implements
+        AmbientModeSupport.AmbientCallbackProvider,
         UIAnimation.UIStateListener,
         SoundRecorder.OnVoicePlaybackStateChangedListener {
 
@@ -72,7 +72,7 @@ public class MainActivity extends Activity implements
      * Ambient mode controller attached to this display. Used by Activity to see if it is in
      * ambient mode.
      */
-    private AmbientMode.AmbientController mAmbientController;
+    private AmbientModeSupport.AmbientController mAmbientController;
 
     enum AppState {
         READY, PLAYING_VOICE, PLAYING_MUSIC, RECORDING
@@ -89,7 +89,7 @@ public class MainActivity extends Activity implements
         mProgressBar = findViewById(R.id.progress_bar);
 
         // Enables Ambient mode.
-        mAmbientController = AmbientMode.attachAmbientSupport(this);
+        mAmbientController = AmbientModeSupport.attach(this);
     }
 
     private void setProgressBar(long progressInMillis) {
@@ -239,10 +239,10 @@ public class MainActivity extends Activity implements
         int[] thumbResources = new int[] {R.id.mic, R.id.play, R.id.music};
         ImageView[] thumbs = new ImageView[3];
         for(int i=0; i < 3; i++) {
-            thumbs[i] = (ImageView) findViewById(thumbResources[i]);
+            thumbs[i] = findViewById(thumbResources[i]);
         }
         View containerView = findViewById(R.id.container);
-        ImageView expandedView = (ImageView) findViewById(R.id.expanded);
+        ImageView expandedView = findViewById(R.id.expanded);
         int animationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
         mUIAnimation = new UIAnimation(containerView, thumbs, expandedView, animationDuration,
                 this);
@@ -312,11 +312,11 @@ public class MainActivity extends Activity implements
     }
 
     @Override
-    public AmbientMode.AmbientCallback getAmbientCallback() {
+    public AmbientModeSupport.AmbientCallback getAmbientCallback() {
         return new MyAmbientCallback();
     }
 
-    private class MyAmbientCallback extends AmbientMode.AmbientCallback {
+    private class MyAmbientCallback extends AmbientModeSupport.AmbientCallback {
         /** Prepares the UI for ambient mode. */
         @Override
         public void onEnterAmbient(Bundle ambientDetails) {
